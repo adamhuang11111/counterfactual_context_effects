@@ -246,8 +246,8 @@
 
     v_vid = jsPsych.randomization.shuffle(v_vid);
     o_vid = jsPsych.randomization.shuffle(o_vid);
-    v_vid = [v_vid[0]];
-    o_vid = [o_vid[0]];
+    // v_vid = [v_vid[0]];
+    // o_vid = [o_vid[0]];
     var video_o = [v_vid,o_vid];
     // var video_o = [h_vid.slice(3,4),v_vid.slice(3,4),o_vid.slice(3,4)];
     var video = jsPsych.randomization.shuffle(video_o);
@@ -400,7 +400,7 @@
         }
     }
     
-    // timeline.push(loop_node);
+    timeline.push(loop_node);
 
     timeline.push({
             type: 'html-button-response',
@@ -610,7 +610,7 @@
     var video_response_o = [[response_causal, video_response_causal], [response_causal_counterfactual, video_response_causal_counterfactual]]
     // var video_response = jsPsych.randomization.shuffle(video_response_o)
     var timeline = timeline.concat(video_response_o[0])
-    // timeline.push(break_screen)
+    timeline.push(break_screen)
     var timeline = timeline.concat(video_response_o[1])
 
     // feedback form
