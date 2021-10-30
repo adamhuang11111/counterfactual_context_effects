@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title> Experiment 1 </title>
+  <script src="js/jspsych.js"></script>
+  <script src="js/jspsych-fullscreen.js"></script>
+  <script src="js/jspsych-image-button-response.js"></script>
+  <script src="js/jspsych-video-keyboard-response.js"></script>
+  <script src="js/jspsych-video-button-response.js"></script>
+  <script src="js/jspsych-video-slider-response.js"></script>
+  <script src="js/jspsych-html-button-response.js"></script>
+  <script src="js/jspsych-survey-multi-choice-custom.js"></script>
+  <script src="js/jspsych-html-slider-response-custom.js"></script>
+  <script src='https://proliferate.alps.science/static/js/proliferate.js'></script>
+  <script src="js/jspsych-survey-html-form.js"></script>
+  <script src='js/jquery.min.js'></script>
+  <script src='js/jquery-ui.min.js'></script>
+  <script src="js/jspsych-preload.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/download.js"></script>
+  <link rel="stylesheet" href="css/jspsych.css">
+  <link rel="stylesheet" href='css/jquery-ui.min.css' />
+</head>
+<body></body>
+<script>
+
+    var timeline = [];
+
+    var loop_timeline = [];
+
+    var preload = {
+    type: 'preload',
+    video : ['stim/Case0_Stim.mp4','stim/Case1_Stim.mp4', 'stim/Case2_Stim.mp4', 'stim/Case3_Stim.mp4', 'stim/Case4_Stim.mp4', 'stim/Case5_Stim.mp4', 'stim/Case6_Stim.mp4', 'stim/Case7_Stim.mp4', 'stim/Case8_Stim.mp4', 
+    'stim/Case9_Stim.mp4', 'stim/Case10_Stim.mp4', 'stim/Case11_Stim.mp4', 'stim/Case12_Stim.mp4', 'stim/Case13_Stim.mp4', 'stim/Case14_Stim.mp4', 'stim/Case15_Stim.mp4', 'stim/Case16_Stim.mp4', 'stim/Case0v_Stim.mp4',
+    'stim/Case1v_Stim.mp4', 'stim/Case2v_Stim.mp4', 'stim/Case3v_Stim.mp4', 'stim/Case4v_Stim.mp4', 'stim/Case5v_Stim.mp4', 'stim/Case6v_Stim.mp4', 'stim/Case7v_Stim.mp4', 'stim/Case8v_Stim.mp4', 'stim/Case17_Stim.mp4',
+    'stim/Case9v_Stim.mp4', 'stim/Case10v_Stim.mp4', 'stim/Case11v_Stim.mp4', 'stim/Case12v_Stim.mp4', 'stim/Case13v_Stim.mp4', 'stim/Case14v_Stim.mp4', 'stim/Case15v_Stim.mp4', 'stim/Case16v_Stim.mp4', 'stim/Case17v_Stim.mp4'],
+    show_detailed_errors: true
+    // video: ['stim/Case1_Stim.mp4']
+    }
+
+    // var preload = {
+    // type: 'preload',
+    // auto_preload: true
+    // }
+
+    timeline.push(preload);
+
+    var fullscreen_trial = {
+    type: 'fullscreen',
+    fullscreen_mode: true
+    }
+    timeline.push(fullscreen_trial)
+
+    // var welcome_page = {
+    // type: 'html-button-response',
+    // stimulus: '<div style="max-width:600px;"><p> In this experiment, you will be asked answer questions by watching a video. You must watch the video twice before you can answer the questions.</p></div>',
+    // choices: ['Continue']
+    // }
+    
+    var statement = {
+        "causal": "<p>Is <span style='color:green; font-weight: bold' >ball A</span> a cause of <b>ball E</b> going through the <span style='color:red; font-weight: bold' >goal</span>?</p>",
+        "counterfactual": "<p>If <span style='color:green; font-weight: bold' >ball A</span> is removed, will <b>ball E</b> have gone through the <span style='color:red; font-weight: bold' >goal</span>?</p>"
+    }
+    
+    var v_vid = [
+        {
+            image: 'stim/Case0v.png',
+            image_last: 'stim/Case0v_last.png',
+            video: 'stim/Case0v_Stim.mp4',
+        },
+        {
+            image: 'stim/Case1v.png',
+            image_last: 'stim/Case1v_last.png',
+            video: 'stim/Case1v_Stim.mp4',
+        },
+        {
+            image: 'stim/Case2v.png',
+            image_last: 'stim/Case2v_last.png',
+            video: 'stim/Case2v_Stim.mp4',
+        },
+        {
+            image: 'stim/Case3v.png',
+            image_last: 'stim/Case3v_last.png',
+            video: 'stim/Case3v_Stim.mp4',
+        },
+        {
+            image: 'stim/Case4v.png',
+            image_last: 'stim/Case4v_last.png',
+            video: 'stim/Case4v_Stim.mp4',
+        },
+        {
+            image: 'stim/Case5v.png',
+            image_last: 'stim/Case5v_last.png',
+            video: 'stim/Case5v_Stim.mp4',
+        },
+        {
+            image: 'stim/Case6v.png',
+            image_last: 'stim/Case6v_last.png',
+            video: 'stim/Case6v_Stim.mp4',
+        },
+        {
+            image: 'stim/Case7v.png',
+            image_last: 'stim/Case7v_last.png',
+            video: 'stim/Case7v_Stim.mp4',
+        },
+        {
+            image: 'stim/Case8v.png',
+            image_last: 'stim/Case8v_last.png',
+            video: 'stim/Case8v_Stim.mp4',
+        },
+        {
+            image: 'stim/Case9v.png',
+            image_last: 'stim/Case9v_last.png',
+            video: 'stim/Case9v_Stim.mp4', 
+        },
+        {
+            image: 'stim/Case10v.png',
+            image_last: 'stim/Case10v_last.png',
+            video: 'stim/Case10v_Stim.mp4',
+        },
+        {
+            image: 'stim/Case11v.png',
+            image_last: 'stim/Case11v_last.png',
+            video: 'stim/Case11v_Stim.mp4',
+        },
+        {
+            image: 'stim/Case12v.png',
+            image_last: 'stim/Case12v_last.png',
+            video: 'stim/Case12v_Stim.mp4',
+        },
+        {
+            image: 'stim/Case13v.png',
+            image_last: 'stim/Case13v_last.png',
+            video: 'stim/Case13v_Stim.mp4', 
+        },
+        {
+            image: 'stim/Case14v.png',
+            image_last: 'stim/Case14v_last.png',
+            video: 'stim/Case14v_Stim.mp4',
+        },
+        {
+            image: 'stim/Case15v.png',
+            image_last: 'stim/Case15v_last.png',
+            video: 'stim/Case15v_Stim.mp4',
+        },
+        {
+            image: 'stim/Case16v.png',
+            image_last: 'stim/Case16v_last.png',
+            video: 'stim/Case16v_Stim.mp4', 
+        }
+    ]
+
+    var o_vid = [
+        {
+            image: 'stim/Case0.png',
+            image_last: 'stim/Case0_last.png',
+            video: 'stim/Case0_Stim.mp4',
+        },
+        {
+            image: 'stim/Case1.png',
+            image_last: 'stim/Case1_last.png',
+            video: 'stim/Case1_Stim.mp4',
+        },
+        {
+            image: 'stim/Case2.png',
+            image_last: 'stim/Case2_last.png',
+            video: 'stim/Case2_Stim.mp4',
+        },
+        {
+            image: 'stim/Case3.png',
+            image_last: 'stim/Case3_last.png',
+            video: 'stim/Case3_Stim.mp4',
+        },
+        {
+            image: 'stim/Case4.png',
+            image_last: 'stim/Case4_last.png',
+            video: 'stim/Case4_Stim.mp4',
+        },
+        {
+            image: 'stim/Case5.png',
+            image_last: 'stim/Case5_last.png',
+            video: 'stim/Case5_Stim.mp4',
+        },
+        {
+            image: 'stim/Case6.png',
+            image_last: 'stim/Case6_last.png',
+            video: 'stim/Case6_Stim.mp4',
+        },
+        {
+            image: 'stim/Case7.png',
+            image_last: 'stim/Case7_last.png',
+            video: 'stim/Case7_Stim.mp4',
+        },
+        {
+            image: 'stim/Case8.png',
+            image_last: 'stim/Case8_last.png',
+            video: 'stim/Case8_Stim.mp4',
+        },
+        {
+            image: 'stim/Case9.png',
+            image_last: 'stim/Case9_last.png',
+            video: 'stim/Case9_Stim.mp4',
+        },
+        {
+            image: 'stim/Case10.png',
+            image_last: 'stim/Case10_last.png',
+            video: 'stim/Case10_Stim.mp4',
+        },
+        {
+            image: 'stim/Case11.png',
+            image_last: 'stim/Case11_last.png',
+            video: 'stim/Case11_Stim.mp4',
+        },
+        {
+            image: 'stim/Case12.png',
+            image_last: 'stim/Case12_last.png',
+            video: 'stim/Case12_Stim.mp4',
+        },
+        {
+            image: 'stim/Case13.png',
+            image_last: 'stim/Case13_last.png',
+            video: 'stim/Case13_Stim.mp4',
+        },
+        {
+            image: 'stim/Case14.png',
+            image_last: 'stim/Case14_last.png',
+            video: 'stim/Case14_Stim.mp4',
+        },
+        {
+            image: 'stim/Case15.png',
+            image_last: 'stim/Case15_last.png',
+            video: 'stim/Case15_Stim.mp4',
+        },
+        {
+            image: 'stim/Case16.png',
+            image_last: 'stim/Case16_last.png',
+            video: 'stim/Case16_Stim.mp4',
+        },
+        {
+            image: 'stim/Case17.png',
+            image_last: 'stim/Case17_last.png',
+            video: 'stim/Case17_Stim.mp4',
+        }
+    ]
+
+    v_vid = jsPsych.randomization.shuffle(v_vid);
+    o_vid = jsPsych.randomization.shuffle(o_vid);
+    // v_vid = [v_vid[0]];
+    // o_vid = [o_vid[0]];
+    var video_o = [v_vid,o_vid];
+    // var video_o = [h_vid.slice(3,4),v_vid.slice(3,4),o_vid.slice(3,4)];
+    var video = jsPsych.randomization.shuffle(video_o);
+
+    var instruction = {
+        timeline: [{
+        type: "html-button-response",
+        stimulus: '<div style="max-width:800px;"><img><img src="' + 'stim/inst.png' + '" width="500" height="375"></img>'
+            + '<p>In this experiment, you will answer questions about video clips showing moving billard balls.</p>'+ 
+            '<p>The setting involves three balls labeled "Ball A", "Ball B", and "Ball E" correspondingly, and a red goal with goal posts as shown above.</p>'
+            + "<p>Sometimes the goal is on the left side, and sometimes it's on the right side.</p>"
+            + '</div>'
+            ,
+        choices: ['Continue']
+        },
+        {
+        type: "html-button-response",
+        stimulus: '<div style="max-width:800px;"><img><img src="' + 'stim/inst.png' + '" width="500" height="375"></img>'
+            + "<p>At some point the video clip will pause, and you will be asked to predict what will happen next. We won't give you feedback as to whether your prediction was right or wrong.</p>"
+            + "<p>Notice that there is <b>no friction</b> in this setting. This means that balls don't slow down over time.</p>"
+            + '<p>Click on the play button to play this video.</p></div>',
+        choices: ['Play']
+        },
+        {
+        type: "video-button-response",
+        stimulus: ['stim/instruction.mp4'],
+        width: 750,
+        height: 375,
+        prompt: '<div style="max-width:800px;">'+ statement.causal
+                + '<p>Click on the "Replay" button to watch the video again.</p></div>',
+        margin_vertical: "40px",
+        choices: ['Replay'],
+        response_allowed_while_playing: false
+        },
+        {
+        type: "video-button-response",
+        width: 750,
+        height: 375,
+        stimulus: ['stim/instruction.mp4'],
+        prompt: '<div style="max-width:800px;">' + statement.causal
+            + '</div>',
+        margin_vertical: "40px",
+        trial_ends_after_video: true,
+        response_allowed_while_playing: false,
+        choices: []
+        },
+        {
+            type: 'html-slider-response',
+            stimulus: '<img src="' + 'stim/inst_last.png' + '" width="500" height="375"' 
+                            + '></img>' + statement.causal + '<p>Please click on the slider below to indicate your response.</p>' + '<br />',
+            labels: ["0%<br />(definitely not a cause)", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100%<br />(definitely a cause)"],
+            min: 0,
+            max: 100,
+            step: 1,
+            choices:['Continue'],
+            statement: statement.outcome,
+            case: "instruction",
+            slider_width:650
+        },
+        {
+        type: "html-button-response",
+        stimulus: '<div style="max-width:800px;">' + '<img src="' + 'stim/inst.png' + '" width="500" height="375"' 
+                            + '></img>' + '<p>You will now watch the video clip two more times and answer the following comprehension questions:</p>'
+                            + '<p>If ball A is removed, will ball E have gone through the gate?</p>' + 
+                            '<p>If ball B is removed, will ball E have gone through the gate?</p></div>',
+        choices: ['Play']
+        },
+        {
+        type: "video-button-response",
+        stimulus: ['stim/instruction.mp4'],
+        prompt: '<div style="max-width:800px;">' + '<p>If ball A is removed, will ball E have gone through the goal?</p>' 
+            +  '<p>If ball B is removed, will ball E have gone through the gate?</p>' 
+            + '</div>',
+        width: 750,
+        height: 375,
+        trial_ends_after_video: false,
+        response_allowed_while_playing: false,
+        margin_vertical: "40px",
+        choices: ['Replay']
+        },
+        {
+        type: "video-button-response",
+        stimulus: ['stim/instruction.mp4'],
+        prompt: '<div style="max-width:800px;">' + '<p>If ball A is removed, will ball E have gone through the goal?</p>' 
+            +  '<p>If ball B is removed, will ball E have gone through the gate?</p>' 
+            + '</div>',
+        width: 750,
+        height: 375,
+        trial_ends_after_video: true,
+        response_allowed_while_playing: false,
+        margin_vertical: "40px",
+        choices: [],
+        on_finish: function() { jsPsych.setProgressBar(0.1);}
+        }
+        ]
+    }
+
+    loop_timeline.push(instruction);
+    // timeline.push(instruction);
+
+    var comprehension_qs = {
+        type: 'survey-multi-choice',
+        questions: [
+            {
+            prompt: "If ball A is removed, will ball E have gone through the goal?", name: "ballA", 
+            options: ["Yes", "No"], 
+            required:true,
+            horizontal: true}, 
+            {
+            prompt: "If ball B is removed, will ball E have gone through the goal?", name: "ballB", 
+            options: ["Yes", "No"], 
+            required:true,
+            horizontal: true},
+            {
+            prompt: "The friction on the table slows the balls down.", name: "friction", 
+            options: ["Yes", "No"], 
+            required:true,
+            horizontal: true}
+        ],
+        preamble: '<b>Comprehension check</b>',
+        on_finish: function(data){
+            // jspsych records responses as json strings
+            data.correct = (data.responses == "{\"ballA\":\"No\",\"ballB\":\"Yes\",\"friction\":\"No\"}");
+        }
+    }
+
+    loop_timeline.push(comprehension_qs);
+
+    // timeline.push(comprehension_qs);
+
+    var fail_comprehension = {
+        timeline: [{
+            type: 'html-button-response',
+            stimulus: 'Unfortunately, you missed some of the comprehension ' +
+                'questions.</p> <p>Please review the instructions again.',
+            choices: ['Review'],
+        }],
+        conditional_function: function(){
+            var data = jsPsych.data.get().last(1).values()[0];
+            return !(data.correct);
+        }
+    }
+    loop_timeline.push(fail_comprehension);
+    
+    var loop_node = {
+        timeline: loop_timeline,
+        loop_function: function(data){
+            var data = jsPsych.data.get().last(1).values()[0];
+            return !(data.correct);
+        }
+    }
+    
+    timeline.push(loop_node);
+
+    timeline.push({
+            type: 'html-button-response',
+            stimulus: '<div style=max-width:800px;' +
+                '>' +
+                '<p> Correct! You will now begin the actual experiment.</p>' +
+                '<p> This experiment will be divided into two blocks, and will take about 15-20 minutes to complete(including break).</p>' +
+                '<p> There will be a 5-minute break between the two blocks, and you may not start the second block before the 5 minutes break expires.</p>' +
+                '<p> You can do anything during the break, and do not have to come back exactly after 5 minutes (you can come back anytime after 5 minutes).</p>'+ 
+                '<p>Click the start button whenever you are ready.</p> </div>',
+            choices: ['Start'],
+        });
+
+    var response_causal = {
+                type: "html-button-response",
+                stimulus: function() {
+                var html = '<div style="max-width:1000px;"><br /><br /><br /><br /><br /><p> In this part of the experiment, you will be asked to answer this question:</p><br />'
+                + statement.causal + '<br />' + '<br />' + '</div>';
+                return html;},
+                choices: ['Continue']  
+    }
+
+    var video_response_causal = {
+        timeline: [
+            {
+            type: "html-button-response",
+            stimulus: function() {
+                var html = '<div style="max-width:1000px;"><img><img src="' + jsPsych.timelineVariable('image') + '" width="500" height="375"></img>'
+                + statement.causal + '<br />' + '<br />' + '</div>';
+                return html;},
+            choices: ['Play']
+            },
+            {
+            type: 'video-button-response',
+            stimulus: [jsPsych.timelineVariable('video')],
+            // stimulus: ['stim/Case0_Stim.mp4'],
+            choices: ['Replay'],
+            height: 375,
+            width: 750,
+            autoplay: true,
+            prompt: statement.causal,
+            margin_vertical: "40px",
+            response_allowed_while_playing: false
+            },
+            {
+            type: 'video-button-response',
+            stimulus: [jsPsych.timelineVariable('video')],
+            // stimulus: ['stim/Case0_Stim.mp4'],
+            choices: [],
+            trial_ends_after_video:	true,
+            height: 375,
+            width: 750,
+            autoplay: true,
+            prompt: statement.causal,
+            margin_vertical: "40px",
+            response_allowed_while_playing: false
+            },
+            {
+            type: 'html-slider-response',
+            stimulus: function() {
+                        var html = '<img src="' + jsPsych.timelineVariable('image_last') + '" width="500" height="375"' 
+                            + '></img>' + statement.causal + '<br />' + '<br />';
+                        return html;},
+            labels: ["0%<br />(definitely not a cause)", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100%<br />(definitely a cause)"],
+            min: 0,
+            max: 100,
+            step: 1,
+            choices: ['Continue'],
+            slider_width:650,
+            statement:statement.causal,
+            case: jsPsych.timelineVariable('video'),
+            on_finish: function() {
+                        var prog = jsPsych.getProgressBarCompleted();
+                        jsPsych.setProgressBar(prog + 0.025);
+                    }
+            }
+        ],
+        timeline_variables: video[0],
+        randomize_order: false
+    }
+
+    var break_screen = {
+        type: 'video-button-response',
+        stimulus: ['stim/5_minute_break.mp4'],
+        // stimulus: ['stim/Case0_Stim.mp4'],
+        choices: ['Continue'],
+        height: 375,
+        width: 750,
+        autoplay: true,
+        prompt: "<p>You will now enter a 5 minute break. You can do whatever you want during the break</p>" + 
+        "<p>You can comeback anytime after the 5 minute.</p>" + 
+        "If the countdown doesn't go all the way to 0:0, but you can click on the Continue button, just ignore the countdown and click Continue as long as you can click it.",
+        margin_vertical: "40px",
+        response_allowed_while_playing: false,
+        trial_ends_after_video:	false
+        }
+
+    var response_causal_counterfactual = {
+                type: "html-button-response",
+                stimulus: function() {
+                var html = '<div style="max-width:1000px;"><br /><br /><br /><br /><br /><p> In this part of the experiment, you will first answer the following question after watching the videos twice:</p>'
+                + statement.counterfactual + '<br /><p> You will then watch the video one more time and answer the question:<p>' + statement.causal
+                + '<br />' + '<br />' + '</div>';
+                return html;},
+                choices: ['Continue']  
+    }
+
+    var video_response_causal_counterfactual = {
+        timeline: [
+            {
+            type: "html-button-response",
+            stimulus: function() {
+                var html = '<div style="max-width:1000px;"><img><img src="' + jsPsych.timelineVariable('image') + '" width="500" height="375"></img>'
+                + statement.counterfactual + '<br />' + '<br />' + '</div>';
+                return html;},
+            choices: ['Play']
+            },
+            {
+            type: 'video-button-response',
+            stimulus: [jsPsych.timelineVariable('video')],
+            // stimulus: ['stim/Case0_Stim.mp4'],
+            choices: ['Replay'],
+            height: 375,
+            width: 750,
+            autoplay: true,
+            prompt: statement.counterfactual,
+            margin_vertical: "40px",
+            response_allowed_while_playing: false
+            },
+            {
+            type: 'video-button-response',
+            stimulus: [jsPsych.timelineVariable('video')],
+            // stimulus: ['stim/Case0_Stim.mp4'],
+            choices: [],
+            trial_ends_after_video:	true,
+            height: 375,
+            width: 750,
+            autoplay: true,
+            prompt: statement.counterfactual,
+            margin_vertical: "40px",
+            response_allowed_while_playing: false
+            },
+            {
+            type: 'html-slider-response',
+            stimulus: function() {
+                        var html = '<img src="' + jsPsych.timelineVariable('image_last') + '" width="500" height="375"' 
+                            + '></img>' + statement.counterfactual + '<br />' + '<br />';
+                        return html;},
+            labels: ["0%<br />(definitely no)", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100%<br />(definitely yes)"],
+            min: 0,
+            max: 100,
+            step: 1,
+            choices: ['Continue'],
+            slider_width:650,
+            statement:statement.counterfactual,
+            case: jsPsych.timelineVariable('video'),
+            on_finish: function() {
+                        var prog = jsPsych.getProgressBarCompleted();
+                        jsPsych.setProgressBar(prog + 0.025);
+                    }
+            },
+            {
+            type: "html-button-response",
+            stimulus: function() {
+                var html = '<div style="max-width:1000px;"><img><img src="' + jsPsych.timelineVariable('image') + '" width="500" height="375"></img>'
+                + "<p> Now watch the video one more time and answer:</p>" + statement.counterfactual + '<br />' + '<br />' + '</div>';
+                return html;},
+            choices: ['Play']
+            },
+            {
+            type: 'video-button-response',
+            stimulus: [jsPsych.timelineVariable('video')],
+            // stimulus: ['stim/Case0_Stim.mp4'],
+            choices: [],
+            trial_ends_after_video:	true,
+            height: 375,
+            width: 750,
+            autoplay: true,
+            prompt: statement.causal,
+            margin_vertical: "40px",
+            response_allowed_while_playing: false
+            },
+            {
+            type: 'html-slider-response',
+            stimulus: function() {
+                        var html = '<img src="' + jsPsych.timelineVariable('image_last') + '" width="500" height="375"' 
+                            + '></img>' + statement.causal + '<br />' + '<br />';
+                        return html;},
+            labels: ["0%<br />(definitely not a cause)", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100%<br />(definitely a cause)"],
+            min: 0,
+            max: 100,
+            step: 1,
+            choices: ['Continue'],
+            slider_width:650,
+            statement:statement.causal,
+            case: jsPsych.timelineVariable('video'),
+            on_finish: function() {
+                        var prog = jsPsych.getProgressBarCompleted();
+                        jsPsych.setProgressBar(prog + 0.025);
+                    }
+            }
+        ],
+        timeline_variables: video[1],
+        randomize_order: false
+    }
+
+    var video_response_o = [[response_causal, video_response_causal], [response_causal_counterfactual, video_response_causal_counterfactual]]
+    // var video_response = jsPsych.randomization.shuffle(video_response_o)
+    var timeline = timeline.concat(video_response_o[0])
+    timeline.push(break_screen)
+    var timeline = timeline.concat(video_response_o[1])
+
+    // feedback form
+        // note: Prolific collects: country of birth, current country of
+        //       residence, employment status, first language, nationality,
+        //       sex, and student status
+        timeline.push({
+            type: 'survey-html-form',
+            html: '<div style="max-width:700px; text-align:center;"> <p>' +
+                'What factors influenced how you decided to respond? Do you' +
+                ' have any questions or comments regarding the experiment?' +
+                '</p> <textarea name="feedback" cols="40" rows="6"' +
+                ' "autofocus"></textarea> <p> Please provide the following' +
+                ' information to complete the study. </p> <div style="text-' +
+                'align:center;"> <div style="text-align:left; display:' +
+                'inline-block; margin-right:20px; line-height:1.8em;"> <ol>' +
+                    '<li>Age:</li> <br>' +
+                    '<li>Gender:</li> <br><br>' +
+                    '<li>Race:</li> <br><br><br><br><br><br>' +
+                    '<li>Ethnicity:</li>' +
+                '</ol> </div>' +
+                '<div style="text-align:left; display: inline-block;' +
+                ' line-height:1.8em;">' +
+                    // age text box
+                    '<input name="age" type="number"  min="18" max="100" /> <br> <br>' +
+                    // gender options
+                    '<input name="gender" type="radio" id="female" value=' +
+                        '"Female" /> <label for="female"> Female </label>' +
+                    '<input name="gender" type="radio" id="male" value=' +
+                        '"Male" /> <label for="male"> Male </label>' +
+                    '<input name="gender" type="radio" id="nonbinary" value=' +
+                        '"Non-binary" /> <label for="nonbinary"> Non-binary </label> <br>' +
+                    '<input name="gender" type="radio" id="other_gender" value=' +
+                        '"other_gender" /> <label for="other_gender"> Other: <input' +
+                        ' type="text" name="other_gender" /> </label> <br><br>' +
+                    // race options
+                    '<input name="race" type="radio" id="white" value=' +
+                        '"White" /> <label for="white"> White </label> <br>' +
+                    '<input name="race" type="radio" id="black" value=' +
+                        '"Black/African American" /> <label for="black">' +
+                        ' Black/African American </label> <br>' +
+                    '<input name="race" type="radio" id="am_ind" value=' +
+                        '"American Indian/Alaska Native" /> <label for="am_ind">' +
+                        ' American Indian/Alaska Native </label> <br>' +
+                    '<input name="race" type="radio" id="asian" value=' +
+                        '"Asian" /> <label for="asian"> Asian </label> <br>' +
+                    '<input name="race" type="radio" id="pac_isl" value=' +
+                        '"Native Hawaiian/Pacific Islander" /> <label for="pac_isl">' +
+                        ' Native Hawaiian/Pacific Islander </label> <br>' +
+                    '<input name="race" type="radio" id="other_race" value="other_race" />' +
+                        '<label for="other_race"> Other: <input type="text"' +
+                        'name="other_race" /> </label> <br><br>' +
+                    // ethnicity options
+                    '<input name="ethnicity" type="radio" id="hisp" value=' +
+                        '"Hispanic" /> <label for="hisp"> Hispanic </label>' +
+                    '<input name="ethnicity" type="radio" id="nonhisp" value=' +
+                        '"Non-Hispanic" /> <label for="nonhisp"> Non-Hispanic' +
+                        ' </label>' +
+                '</div> </div>' +
+                '<p> Please press the finish button to complete the experiment. </p> </div>',
+            button_label: 'Finish',
+            on_start: function() { jsPsych.setProgressBar(1.0); }
+        });
+
+    var fullscreen_trial_exit = {
+    type: 'fullscreen',
+    fullscreen_mode: false
+    }
+
+    var end_screen = {
+        type: "html-button-response",
+        stimulus: function() {
+            var html = '<div style="margin: auto;"> <p>' +
+        ' Thank you for participating in this experiment! </p>'
+        + '<p> Your browser will automatically download the data for you after you click on the download button.</p>' +
+        '<p> Please send the downloaded data to huangajq@iu.edu, thank you!';
+            return html;},
+        choices: ['Download']
+        }
+
+    timeline.push(fullscreen_trial_exit);
+    timeline.push(end_screen)
+
+jsPsych.init({
+    timeline: timeline,
+    show_progress_bar: true,
+    auto_update_progress_bar: false,
+    on_finish: function() { 
+        var data = jsPsych.data.get().filter([
+            {trial_type: 'html-slider-response'},
+            {trial_type: 'survey-html-form'},
+        ]);
+        var values = data.values();
+        
+        // record all ratings
+        var trials = [];
+        for (var i = 0; i < values.length - 1; i++) {
+            var temp = {};
+            temp["responses"] = values[i]['responses'];
+            temp["statement"] = values[i]['statement'];
+            temp["case"] = values[i]['case'];
+            trials.push(temp);
+        }
+
+        // parse demographics and construct participant data
+        var participant = JSON.parse(values[values.length-1]['responses']);
+        // override if selected "other" or none
+        if (participant.gender == "other_gender" || typeof participant.gender == "undefined") {
+            participant.gender = participant.other_gender;
+        }
+        delete participant.other_gender;
+        if (participant.race == "other_race" || typeof participant.race == "undefined") {
+            participant.race = participant.other_race;
+        }
+        delete participant.other_race;
+        if (typeof participant.ethnicity == "undefined") {
+            participant.ethnicity = "";
+        }
+        participant.age = parseInt(participant.age);
+        participant.id = jsPsych.data.getURLVariable('id');
+        participant.time = parseInt(values[values.length-1]['time_elapsed']);
+        // convert to ISO format for mySQL
+        var now = new Date().toISOString();
+        var trials = trials.concat(participant)
+        var trials = JSON.stringify(trials);
+        // var participant = JSON.stringify(participant);
+        console.log([trials]);
+        console.log([participant]);
+        participant.timestamp = now.slice(0, 19).replace('T', ' ');
+        // $('#jspsych-content').css('margin-top', 'auto');
+        // var fs = require('fs');
+        // fs.writeFile('participant.json', JSON.stringify([participant]), 'utf8', callback);
+        // fs.writeFile('trials.json', JSON.stringify([trials]), 'utf8', callback);
+        // saveData('participants', JSON.stringify([participant]));
+        // saveData('trials', JSON.stringify([trials]));
+        jsPsych.data.displayData(trials)
+        download(trials, "counterfactual_pool_data.json")
+        }});
+</script>
+
+</html>
