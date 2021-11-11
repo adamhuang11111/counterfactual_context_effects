@@ -59,7 +59,7 @@
     // }
     
     var statement = {
-        "causal": "<p>How likely is <span style='color:green; font-weight: bold' >ball A</span> a cause of <b>ball E</b> going through the <span style='color:red; font-weight: bold' >goal</span>?</p>",
+        "causal": "<p>Is <span style='color:green; font-weight: bold' >ball A</span> a cause of <b>ball E</b> going through the <span style='color:red; font-weight: bold' >goal</span>?</p>",
         "counterfactual": "<p>If <span style='color:green; font-weight: bold' >ball A</span> is removed, how likely will <b>ball E</b> have gone through the <span style='color:red; font-weight: bold' >goal</span>?</p>"
     }
     
@@ -335,7 +335,7 @@
                             "<p>If <span style='color:blue; font-weight: bold' >ball B</span> is removed, will <b>ball E</b> have gone through the gate?</p></div>",
         width: 750,
         height: 375,
-        trial_ends_after_video: true,
+        trial_ends_after_video: false,
         response_allowed_while_playing: false,
         margin_vertical: "40px",
         choices: ["Replay"]
