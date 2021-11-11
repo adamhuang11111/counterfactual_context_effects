@@ -59,8 +59,8 @@
     // }
     
     var statement = {
-        "causal": "<p>Is <span style='color:green; font-weight: bold' >ball A</span> a cause of <b>ball E</b> going through the <span style='color:red; font-weight: bold' >goal</span>?</p>",
-        "counterfactual": "<p>If <span style='color:green; font-weight: bold' >ball A</span> is removed, will <b>ball E</b> have gone through the <span style='color:red; font-weight: bold' >goal</span>?</p>"
+        "causal": "<p>How likely is <span style='color:green; font-weight: bold' >ball A</span> a cause of <b>ball E</b> going through the <span style='color:red; font-weight: bold' >goal</span>?</p>",
+        "counterfactual": "<p>If <span style='color:green; font-weight: bold' >ball A</span> is removed, how likely will <b>ball E</b> have gone through the <span style='color:red; font-weight: bold' >goal</span>?</p>"
     }
     
     var v_vid = [
@@ -310,16 +310,16 @@
         {
         type: "html-button-response",
         stimulus: '<div style="max-width:800px;">' + '<img src="' + 'stim/inst.png' + '" width="500" height="375"' 
-                            + '></img>' + '<p>You will now watch the video clip two more times and answer the following comprehension questions:</p>'
-                            + '<p>If ball A is removed, will ball E have gone through the gate?</p>' + 
-                            '<p>If ball B is removed, will ball E have gone through the gate?</p></div>',
+                            + '></img>' + '<p>You will now watch the video clip three more times and answer the following comprehension questions:</p>'
+                            + "<p>If <span style='color:green; font-weight: bold' >ball A</span> is removed, will <b>ball E</b> have gone through the gate?</p>" + 
+                            "<p>If <span style='color:blue; font-weight: bold' >ball B</span> is removed, will <b>ball E</b> have gone through the gate?</p></div>",
         choices: ['Play']
         },
         {
         type: "video-button-response",
         stimulus: ['stim/instruction.mp4'],
-        prompt: '<div style="max-width:800px;">' + '<p>If ball A is removed, will ball E have gone through the goal?</p>' 
-            +  '<p>If ball B is removed, will ball E have gone through the gate?</p>' 
+        prompt: '<div style="max-width:800px;">' + "<p>If <span style='color:green; font-weight: bold' >ball A</span> is removed, will <b>ball E</b> have gone through the gate?</p>" + 
+                            "<p>If <span style='color:blue; font-weight: bold' >ball B</span> is removed, will <b>ball E</b> have gone through the gate?</p></div>"
             + '</div>',
         width: 750,
         height: 375,
@@ -331,9 +331,20 @@
         {
         type: "video-button-response",
         stimulus: ['stim/instruction.mp4'],
-        prompt: '<div style="max-width:800px;">' + '<p>If ball A is removed, will ball E have gone through the goal?</p>' 
-            +  '<p>If ball B is removed, will ball E have gone through the gate?</p>' 
-            + '</div>',
+        prompt: '<div style="max-width:800px;">' + "<p>If <span style='color:green; font-weight: bold' >ball A</span> is removed, will <b>ball E</b> have gone through the gate?</p>" + 
+                            "<p>If <span style='color:blue; font-weight: bold' >ball B</span> is removed, will <b>ball E</b> have gone through the gate?</p></div>",
+        width: 750,
+        height: 375,
+        trial_ends_after_video: true,
+        response_allowed_while_playing: false,
+        margin_vertical: "40px",
+        choices: ["Replay"]
+        },
+        {
+        type: "video-button-response",
+        stimulus: ['stim/instruction.mp4'],
+        prompt: '<div style="max-width:800px;">' + "<p>If <span style='color:green; font-weight: bold' >ball A</span> is removed, will <b>ball E</b> have gone through the gate?</p>" + 
+                            "<p>If <span style='color:blue; font-weight: bold' >ball B</span> is removed, will <b>ball E</b> have gone through the gate?</p></div>",
         width: 750,
         height: 375,
         trial_ends_after_video: true,
@@ -566,7 +577,7 @@
             type: "html-button-response",
             stimulus: function() {
                 var html = '<div style="max-width:1000px;"><img><img src="' + jsPsych.timelineVariable('image') + '" width="500" height="375"></img>'
-                + "<p> Now watch the video one more time and answer:</p>" + statement.counterfactual + '<br />' + '<br />' + '</div>';
+                + "<p> Now watch the video one more time and answer:</p>" + statement.causal + '<br />' + '<br />' + '</div>';
                 return html;},
             choices: ['Play']
             },
