@@ -60,7 +60,7 @@
     
     var statement = {
         "causal": "<p>Is <span style='color:green; font-weight: bold' >ball A</span> a cause of <b>ball E</b> going through the <span style='color:red; font-weight: bold' >goal</span>?</p>",
-        "counterfactual": "<p>If <span style='color:green; font-weight: bold' >ball A</span> is removed, how likely will <b>ball E</b> have gone through the <span style='color:red; font-weight: bold' >goal</span>?</p>"
+        "counterfactual": "<p>If <span style='color:green; font-weight: bold' >ball A</span> had been removed, how likely would <b>ball E</b> have gone through the <span style='color:red; font-weight: bold' >goal</span>?</p>"
     }
     
     var v_vid = [
@@ -318,8 +318,8 @@
         {
         type: "video-button-response",
         stimulus: ['stim/instruction.mp4'],
-        prompt: '<div style="max-width:800px;">' + "<p>If <span style='color:green; font-weight: bold' >ball A</span> is removed, will <b>ball E</b> have gone through the gate?</p>" + 
-                            "<p>If <span style='color:blue; font-weight: bold' >ball B</span> is removed, will <b>ball E</b> have gone through the gate?</p></div>"
+        prompt: '<div style="max-width:800px;">' + "<p>If <span style='color:green; font-weight: bold' >ball A</span> had not been presented, would <b>ball E</b> have gone through the gate?</p>" + 
+                            "<p>If <span style='color:blue; font-weight: bold' >ball B</span> had not been presented, would <b>ball E</b> have gone through the gate?</p></div>"
             + '</div>',
         width: 750,
         height: 375,
@@ -331,8 +331,8 @@
         {
         type: "video-button-response",
         stimulus: ['stim/instruction.mp4'],
-        prompt: '<div style="max-width:800px;">' + "<p>If <span style='color:green; font-weight: bold' >ball A</span> is removed, will <b>ball E</b> have gone through the gate?</p>" + 
-                            "<p>If <span style='color:blue; font-weight: bold' >ball B</span> is removed, will <b>ball E</b> have gone through the gate?</p></div>",
+        prompt: '<div style="max-width:800px;">' + "<p>If <span style='color:green; font-weight: bold' >ball A</span> had not been presented, would <b>ball E</b> have gone through the gate?</p>" + 
+                            "<p>If <span style='color:blue; font-weight: bold' >ball B</span> had not been presented, would <b>ball E</b> have gone through the gate?</p></div>",
         width: 750,
         height: 375,
         trial_ends_after_video: false,
@@ -343,8 +343,8 @@
         {
         type: "video-button-response",
         stimulus: ['stim/instruction.mp4'],
-        prompt: '<div style="max-width:800px;">' + "<p>If <span style='color:green; font-weight: bold' >ball A</span> is removed, will <b>ball E</b> have gone through the gate?</p>" + 
-                            "<p>If <span style='color:blue; font-weight: bold' >ball B</span> is removed, will <b>ball E</b> have gone through the gate?</p></div>",
+        prompt: '<div style="max-width:800px;">' + "<p>If <span style='color:green; font-weight: bold' >ball A</span> had not been presented, would <b>ball E</b> have gone through the gate?</p>" + 
+                            "<p>If <span style='color:blue; font-weight: bold' >ball B</span> had not been presented, would <b>ball E</b> have gone through the gate?</p></div>",
         width: 750,
         height: 375,
         trial_ends_after_video: true,
@@ -363,12 +363,12 @@
         type: 'survey-multi-choice',
         questions: [
             {
-            prompt: "If ball A is removed, will ball E have gone through the goal?", name: "ballA", 
+            prompt: "If ball A had not been presented, would ball E have gone through the goal?", name: "ballA", 
             options: ["Yes", "No"], 
             required:true,
             horizontal: true}, 
             {
-            prompt: "If ball B is removed, will ball E have gone through the goal?", name: "ballB", 
+            prompt: "If ball B had not been presented, would ball E have gone through the goal?", name: "ballB", 
             options: ["Yes", "No"], 
             required:true,
             horizontal: true},
