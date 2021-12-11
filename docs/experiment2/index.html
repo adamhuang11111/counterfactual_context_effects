@@ -692,7 +692,7 @@ jsPsych.init({
     auto_update_progress_bar: false,
     on_finish: function() { 
         var data = jsPsych.data.get().filter([
-            {trial_type: 'html-slider-response'},
+            {trial_type: 'html-button-response-data'},
             {trial_type: 'survey-html-form'},
         ]);
         var values = data.values();
