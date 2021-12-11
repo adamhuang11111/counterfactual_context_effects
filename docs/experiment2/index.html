@@ -301,7 +301,7 @@
                             + '></img>' + statement.causal + '</div>',
         margin_vertical: "20px",
         choices: ["No", "Yes"],
-        statement: statement.causal,
+        statement: "causal",
         case:"instruction"
         },
         {
@@ -474,8 +474,8 @@
                         return html;},
             margin_vertical: "20px",
             choices: ["No", "Yes"],
-            statement: statement.causal,
-            case:"instruction",
+            statement: "causal",
+            case:jsPsych.timelineVariable('video'),
             on_finish: function() {
                         var prog = jsPsych.getProgressBarCompleted();
                         jsPsych.setProgressBar(prog + 0.025);
@@ -498,7 +498,7 @@
         "<p>You can comeback anytime after the 5 minute.</p>" + 
         "If the countdown doesn't go all the way to 0:0, but you can click on the Continue button, just ignore the countdown and click Continue as long as you can click it.",
         margin_vertical: "40px",
-        response_allowed_while_playing: true,
+        response_allowed_while_playing: false,
         trial_ends_after_video:	false
         }
 
@@ -555,8 +555,8 @@
                         return html;},
             margin_vertical: "20px",
             choices: ["No", "Yes"],
-            statement: statement.counterfactual,
-            case:"instruction"
+            statement: "counterfactual",
+            case: jsPsych.timelineVariable('video')
             },
             {
             type: "html-button-response",
@@ -587,8 +587,8 @@
                         return html;},
             margin_vertical: "20px",
             choices: ["No", "Yes"],
-            statement: statement.causal,
-            case:"instruction",
+            statement: "causal",
+            case:jsPsych.timelineVariable('video'),
             on_finish: function() {
                         var prog = jsPsych.getProgressBarCompleted();
                         jsPsych.setProgressBar(prog + 0.025);
