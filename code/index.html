@@ -44,6 +44,37 @@
     // auto_preload: true
     // }
 
+    var welcome = {
+        type: 'html-button-response',
+        stimulus: '<p><b>Consent Form</b></p> <div style="text-align:left;' +
+            'background-color:lightblue; padding:20px; max-width:900px;">' +
+            '<p><b>Description:</b> Welcome! You are invited to participate ' +
+            'in a research study in cognitive psychology. ' 
+            + 'During the experiment you will be asked to read text descriptions, look at several images' 
+            +', watch videos about billard balls colliding into each other, and be asked to make judgments about' + 
+            ' the videos and images. You will make responses by clicking on buttons or sliders using your computer.<p>' 
+            + '<p><b>Risks and benefits:</b> Risks involved in this study are ' +
+            'minimal and is the same as those normally associated with computer based surveys ' + 
+            'such as mild eye/arm strains. ' + 'You are not recommended to participate in the study,' +
+            ' if you have any pre-existing condition that distrubs you from completing ' +
+            'computer based surveys. '
+            + 'If you experience strains that prevents you ' + 
+            'from reading and completing the survey, you may quit the experiment any time without any penalty.</p>'
+            + '<p><b>Time involvement and payment:</b> This experiment will take about 20 minutes to complete'
+            + ' including a mandatory 5-minute break within the study. The payment will be the same as indicated on the recruitment material.</p>'
+            + '<p><b>Subject rights</b>: If you have read this notice and decide to participate in the experiment, ' 
+            + 'your participation in the experiment will be voluntary, and you have the right to quit the experiment any time without any penalty.'
+            + ' <b>Your data collected for this experiment will only be used as a class project at Indiana University, and will only be used ' + 
+            'for internal analysis. We will not publish your data anywhere else and will promise to protect your privacy.</b></p>' 
+            + '<p><b>Contact Information:</b> If you have any complaints and questions regarding how the experiment is conducted, or its risks or benefits' + 
+            ', please contact the principal conductor: Jiaqi Huang, Email: huangajq@iu.edu. ' + 'If you have any further complaints and questions about subject rights, ' + 
+            'you could also contact the instructor of the class: Michael Jones, jonesmn@indiana.edu.</p>'
+            + '<p>If you have read the above notice, and decided to participate in this experiment, please click on I agree. You may want to print a copy' 
+            + '. You may want to print a copy of this consent form to keep. </p>',
+        choices: ['I agree']
+  }
+  timeline.push(welcome);
+
     timeline.push(preload);
 
     var fullscreen_trial = {
